@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sub-dropdown {
+  &:hover .sub-dropdown-content {
+    @apply visible top-0 opacity-100;
+  }
+}
+.sticky {
+  @apply fixed z-30 h-20 bg-white shadow-md animate-headerSticky;
+}
+.before-ripple { @apply animate-video-ripple-before; }
+.after-ripple { @apply animate-video-ripple-after; }
+.glightbox-clean {
+  > .gprev { @apply hidden;}
+}
+.gprev { @apply !hidden; }
+.gnext { @apply !hidden; }
+.goverlay { @apply !bg-black !opacity-80; }
+
+.swal2 {
+  &-html-container { @apply !m-6; }
+  &-actions { @apply !mt-0 !mb-4; }
+}
+
+form .group {
+  &.error {
+    label { @apply text-red-700; }
+    > input,> textarea, > .choices > .choices__inner { @apply !bg-red-50 !border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500; }
+    p.error { @apply text-red-600 text-sm; }
+  }
+  > .choices { @apply mb-2; }
+}
+
+.pretty {
+  input:checked ~ .state ,
+  &.p-toggle .state {
+    label:after { @apply !bg-blue-500; }
+    label:before { @apply border-blue-500; }
+  }
+  &.p-default:not(.p-fill) input:checked ~ .state label:after { @apply !bg-blue-500; }
+  &.p-switch {
+    input:checked ~ .state:before { @apply border-blue-500; }
+    &.p-fill input:checked ~ .state:before { @apply !bg-blue-500; }
+    &.p-slim input:checked ~ .state:before { @apply !bg-blue-600 border-blue-600; }
+  }
+}
+
+.choices {
+  &__inner { @apply !border-gray-200 !rounded-lg !bg-white; }
+  &__list--multiple .choices__item { @apply !border-blue-600 !bg-blue-500; }
+  &__input { @apply !bg-transparent; }
+}
+
+.html-render { @apply text-justify;
+
+  .image { @apply inline-block text-center w-full py-5;
+    .caption { @apply bg-teal-50 border border-teal-200 mt-1 py-1 px-2 inline-block; }
+  }
+  p { @apply mb-7;
+    &:has(code) { @apply bg-gray-100 text-red-500 p-4 rounded font-medium; }
+  }
+  img { @apply mx-auto; }
+  h1 { @apply text-5xl text-teal-900 mb-5; }
+  h2 { @apply text-4xl text-teal-900 mb-5; }
+  h3 { @apply text-3xl text-teal-900 mb-5; }
+  h4 { @apply text-2xl text-teal-900 mb-5; }
+  h5 { @apply text-xl text-teal-900 mb-5; }
+  h6 { @apply text-lg text-teal-900 mb-5; }
+  .delimiter { @apply ~'h-0.5' w-52 mx-auto my-14 bg-white; }
+  .caption-img { @apply border border-gray-100 px-3 py-2 mt-1 rounded overflow-hidden; }
+  .with-background { @apply bg-gray-500 p-10 rounded overflow-hidden;
+
+    img { @apply ~'w-3/4' mx-auto; }
+  }
+  .border-img { @apply border border-gray-100; }
+  .stretched { @apply max-w-none;
+
+    > img { @apply w-screen; }
+  }
+  table { @apply w-full my-3;
+
+    th,
+    td { @apply text-left border border-gray-200 px-2 py-1; }
+  }
+  .blockquote { @apply mx-auto flex;
+
+    blockquote { @apply mb-7 mx-auto relative table text-justify p-4;
+      background: linear-gradient(to right, theme('textColor.indigo.500') 2px, transparent 1px)
+      0 100%, linear-gradient(to left, theme('textColor.indigo.500') 2px, transparent 1px)
+      100% 0, linear-gradient(to bottom, theme('textColor.indigo.500') 2px, transparent 1px)
+      100% 0, linear-gradient(to top, theme('textColor.indigo.500') 2px, transparent 1px)
+      0 100%;
+      background-size: 20px 20px;
+      background-repeat: no-repeat;
+
+      &:before,
+      &:after { @apply font-black absolute text-indigo-500 text-xl;
+        font-family: Line Awesome Free, serif;
+      }
+
+      &:before { @apply -top-3 right-full -mr-3;
+        content: '\f10d';
+      }
+
+      &:after { @apply -bottom-3 left-full top-auto -ml-3;
+        content: '\f10e';
+      }
+    }
+    small { @apply -mt-9 font-bold block text-right; }
+  }
+}
+
+
+
+.hamburger { @apply flex self-center flex-col justify-between w-9 h-7 pt-1 pb-1;
+  span { @apply self-end w-full bg-white transition-all duration-300 ease-in-out ~'h-0.5'; }
+  .meat { @apply ~'w-10/12' transition-all duration-150 ease-in-out; }
+  .bottom-bun { @apply ~'w-7/12'; }
+  &:hover span { @apply w-full; }
+  &.active {
+    .top-bun { @apply w-full -rotate-45 ~'translate-y-[0.6rem]'; }
+    .bottom-bun { @apply w-full rotate-45 ~'-translate-y-[0.5rem]'; }
+    .meat { @apply w-0; }
+    &:hover { @apply transition-transform duration-300 hover:rotate-90 ease-in-out; }
+  }
+  &:not(.active):hover {
+    .top-bun { @apply animate-burger-hover-2; }
+    .meat { @apply animate-burger-hover-4; }
+    .bottom-bun { @apply animate-burger-hover-6; }
+  }
+}
+
+// .hamburger-arrow { @apply relative w-9 h-6;
+//   span { @apply absolute w-full ~'h-0.5' left-0 rounded-sm bg-white transition-all duration-300 ease-in-out;
+//     &.top-bun { @apply top-0; }
+//     &.bottom-bun { @apply bottom-0;}
+//   }
+//   &.active span{
+//     &.top-bun { @apply w-4 top-6 rotate-45 ~'-translate-x-[0.13rem] -translate-y-[0.4rem]'; }
+//     &.meat { @apply w-3/4 rotate-180; }
+//     &.bottom-bun { @apply w-4 bottom-6 -rotate-45 ~'-translate-x-[0.13rem] translate-y-[0.55rem]'; }
+//   }
+// }
